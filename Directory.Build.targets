@@ -1,0 +1,8 @@
+<Project>
+
+    <PropertyGroup>
+        <NBGV_ThisAssemblyNamespace>$(RootNamespace)</NBGV_ThisAssemblyNamespace>
+        <NBGV_ThisAssemblyIncludesPackageVersion>true</NBGV_ThisAssemblyIncludesPackageVersion>
+    </PropertyGroup>
+    
+</Project>

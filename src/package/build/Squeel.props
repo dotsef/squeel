@@ -1,0 +1,11 @@
+<Project>
+	<ItemGroup>
+		<CompilerVisibleProperty Include="__SqueelConnectionString" />
+	</ItemGroup>
+
+    <PropertyGroup>
+        <InterceptorsPreviewNamespaces>$(InterceptorsPreviewNamespaces);Squeel</InterceptorsPreviewNamespaces>
+    </PropertyGroup>
+
+    <UsingTask TaskName="Squeel.ReadSqueelJsonFile" AssemblyFile="$(MSBuildThisFileDirectory)../tasks/netstandard2.0/Squeel.Tasks.dll" />
+</Project>

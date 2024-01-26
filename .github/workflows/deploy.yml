@@ -1,0 +1,64 @@
+﻿name: "🚀 Deploy Squeel to NuGet"
+
+on:
+  push:
+    branches:
+    - main
+
+env:
+  DOTNET_NOLOGO: true
+  DOTNET_CLI_TELEMETRY_OPTOUT: true
+  NUGET_PACKAGES: ${{ github.workspace }}/.nuget/packages
+ 
+permissions:
+  contents: write
+
+jobs:
+  push:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+        name: "📖 cloning"
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-dotnet@v3
+        name: "🛠️ setup"
+        env:
+          NUGET_AUTH_TOKEN: ${{ secrets.NUGET_FEED_PAT }}
+        with:
+          global-json-file: global.json
+          cache: true
+          cache-dependency-path: '**/packages.lock.json'
+
+      - run: dotnet restore --locked-mode -p:DisableImplicitNuGetFallbackFolder=true
+        name: "📦 restoring"
+        shell: bash
+
+      - run: dotnet build -c Release --no-restore -p:TreatWarningsAsErrors=true
+        name: "⚙️ compiling"
+        shell: bash
+
+      - run: dotnet pack -c Release --no-restore --no-build -p:TreatWarningsAsErrors=true
+        name: "📦 packaging"
+        shell: bash
+  
+      - run: dotnet nuget push src/squeel/**/*.nupkg -s https://api.nuget.org/v3/index.json -k ${{ secrets.NUGET_API_KEY }}
+        name: "🚀 publishing"
+        shell: bash
+
+      - run: git config user.email "${{ github.job }}.${{ github.run_id }}@dotsef.com"
+        name: "🥷 email"
+        shell: bash
+      
+      - run: git config user.name "Action '${{ github.job }}' Run ${{ github.run_id }}"
+        name: "🥷 name"
+        shell: bash
+      
+      - run: nbgv tag
+        name: "🏷️ tagging"
+        shell: bash
+      
+      - run: git push origin v$(nbgv get-version -v NuGetPackageVersion)
+        name: "🏷️ pushing"
+        shell: bash
