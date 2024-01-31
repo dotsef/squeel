@@ -43,7 +43,7 @@ jobs:
         name: "copy"
         shell: bash
 
-      - run: docker exec -i postgres psql -h postgres -U squeel -d squeel -f /postgres.sql
+      - run: docker exec -i postgres psql -h localhost -U squeel -d squeel -f /postgres.sql
         name: "seeding"
         shell: bash
 
