@@ -39,6 +39,14 @@ jobs:
         name: "connection string"
         shell: bash
 
+      - run: docker cp .github/workflows/postgresl.sql postgres:/postgres.sql
+        name: "copy"
+        shell: bash
+
+      - run: docker exec -i postgres psql -U squeel -d squeel -f /postgres.sql
+        name: "seeding"
+        shell: bash
+
       - run: dotnet restore --locked-mode -p:DisableImplicitNuGetFallbackFolder=true
         name: "📦 restoring"
         shell: bash
