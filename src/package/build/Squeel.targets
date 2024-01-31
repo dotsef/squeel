@@ -1,7 +1,0 @@
-<Project>
-    <Target Name="ReadSqueelJson" BeforeTargets="CoreCompile">
-        <ReadSqueelJsonFile JsonFilePath="$(MSBuildProjectDirectory)\squeel.json">
-            <Output TaskParameter="ConnectionString" PropertyName="__SqueelConnectionString" />
-        </ReadSqueelJsonFile>
-    </Target>
-</Project>

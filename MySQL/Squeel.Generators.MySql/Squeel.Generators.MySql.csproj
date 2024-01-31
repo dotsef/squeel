@@ -1,0 +1,51 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <IsRoslynComponent>true</IsRoslynComponent>
+        <DevelopmentDependency>true</DevelopmentDependency>
+        <IncludeBuildOutput>false</IncludeBuildOutput>
+        <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
+        <AssemblyName>Squeel.Generators.MySql</AssemblyName>
+        <IsPackable>false</IsPackable>
+        <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+        <NoWarn>
+            $(NoWarn);
+            CA2100; <!-- All queries are ran against the developer's own database -->
+        </NoWarn>
+    </PropertyGroup>
+
+    <ItemGroup Label="Source Generators">
+        <PackageReference Include="Microsoft.CodeAnalysis.CSharp" PrivateAssets="all" />
+        <PackageReference Include="Microsoft.CodeAnalysis.Analyzers">
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
+        <PackageReference Include="PolySharp">
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
+    </ItemGroup>
+
+    <ItemGroup Label="Manual Dependencies">
+        <PackageReference Include="MySql.Data" GeneratePathProperty="true" PrivateAssets="all" />
+        <PackageReference Include="Humanizer.Core" GeneratePathProperty="true" PrivateAssets="all" />
+    </ItemGroup>
+
+    <PropertyGroup>
+        <GetTargetPathDependsOn>$(GetTargetPathDependsOn);GetDependencyTargetPaths</GetTargetPathDependsOn>
+    </PropertyGroup>
+
+    <Target Name="GetDependencyTargetPaths">
+        <ItemGroup>
+            <TargetPathWithTargetPlatformMoniker IncludeRuntimeDependency="false" Include="$(MSBuildProjectDirectory)\..\..\Squeel.Core\bin\$(Configuration)\netstandard2.0\Squeel.Core.dll" />
+            <TargetPathWithTargetPlatformMoniker IncludeRuntimeDependency="false" Include="$(PkgMySql_Data)\lib\netstandard2.0\*.dll" />
+            <TargetPathWithTargetPlatformMoniker IncludeRuntimeDependency="false" Include="$(PkgHumanizer_Core)\lib\netstandard2.0\*.dll" />
+        </ItemGroup>
+    </Target>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\Squeel.Core\Squeel.Core.csproj" />
+    </ItemGroup>
+
+</Project>

@@ -6,6 +6,8 @@
 # dotenv files
 .env
 
+squeel.json
+
 # User-specific files
 *.rsuser
 *.suo

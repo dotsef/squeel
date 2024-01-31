@@ -1,0 +1,65 @@
+{
+  "version": 1,
+  "parameters": "--include-transitive",
+  "projects": [
+    {
+      "path": "V:/squeel/Postgres/Squeel.Examples.Postgres/Squeel.Examples.Postgres.csproj",
+      "frameworks": [
+        {
+          "framework": "net8.0",
+          "topLevelPackages": [
+            {
+              "id": "DotNet.ReproducibleBuilds",
+              "requestedVersion": "1.1.1",
+              "resolvedVersion": "1.1.1"
+            },
+            {
+              "id": "Nerdbank.GitVersioning",
+              "requestedVersion": "3.7.48-alpha",
+              "resolvedVersion": "3.7.48-alpha"
+            },
+            {
+              "id": "Npgsql",
+              "requestedVersion": "8.0.1",
+              "resolvedVersion": "8.0.1"
+            }
+          ],
+          "transitivePackages": [
+            {
+              "id": "Microsoft.Build.Tasks.Git",
+              "resolvedVersion": "1.1.1"
+            },
+            {
+              "id": "Microsoft.Extensions.DependencyInjection.Abstractions",
+              "resolvedVersion": "8.0.0"
+            },
+            {
+              "id": "Microsoft.Extensions.Logging.Abstractions",
+              "resolvedVersion": "8.0.0"
+            },
+            {
+              "id": "Microsoft.SourceLink.AzureRepos.Git",
+              "resolvedVersion": "1.1.1"
+            },
+            {
+              "id": "Microsoft.SourceLink.Bitbucket.Git",
+              "resolvedVersion": "1.1.1"
+            },
+            {
+              "id": "Microsoft.SourceLink.Common",
+              "resolvedVersion": "1.1.1"
+            },
+            {
+              "id": "Microsoft.SourceLink.GitHub",
+              "resolvedVersion": "1.1.1"
+            },
+            {
+              "id": "Microsoft.SourceLink.GitLab",
+              "resolvedVersion": "1.1.1"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

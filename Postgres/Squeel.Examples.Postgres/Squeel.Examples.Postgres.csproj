@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <Import Project="../../Squeel.Package/build/Squeel.props" />
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <OutputType>Exe</OutputType>
+        <IsPackable>false</IsPackable>
+        <RestoreNoCache>true</RestoreNoCache>
+        <DisableImplicitNuGetFallbackFolder>true</DisableImplicitNuGetFallbackFolder>
+        <RestorePackagesWithLockFile>false</RestorePackagesWithLockFile>
+        <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Npgsql" />
+        <ProjectReference Include="..\Squeel.Generators.Postgres\Squeel.Generators.Postgres.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+        <ProjectReference Include="..\..\Squeel.Package\Squeel.Package.csproj" />
+    </ItemGroup>
+
+    <Import Project="../../Squeel.Package/build/Squeel.targets" />
+
+</Project>

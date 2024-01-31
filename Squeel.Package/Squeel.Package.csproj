@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <AssemblyName>Squeel</AssemblyName>
+        <PackageId>Squeel</PackageId>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <IsPackable>true</IsPackable>
+        <NoWarn>
+            $(NoWarn);
+            NU5100; <!-- We are packing analyzers, source generators, and msbuild tasks in addition to lib dependencies -->
+            NU5118; <!-- Analyzers and Generators have common dependencies -->
+        </NoWarn>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference PrivateAssets="all" ReferenceOutputAssembly="false" Include="../Postgres/Squeel.Generators.Postgres/Squeel.Generators.Postgres.csproj" PackagePath="generators/postgres"/>
+        <ProjectReference PrivateAssets="all" ReferenceOutputAssembly="false" Include="../SqlServer/Squeel.Generators.SqlServer/Squeel.Generators.SqlServer.csproj" PackagePath="generators/sqlserver"/>
+        <ProjectReference PrivateAssets="all" ReferenceOutputAssembly="false" Include="../MySql/Squeel.Generators.MySql/Squeel.Generators.MySql.csproj" PackagePath="generators/mysql"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Include="build/*" Pack="true" PackagePath="build;buildTransitive" />
+        <None Include="README.md" Pack="true" PackagePath="/" />
+    </ItemGroup>
+
+    <Target Name="HandlePackTypes" BeforeTargets="_LoadPackInputItems">
+        <ItemGroup>
+            <None
+                Include="%(ProjectReference.RootDir)%(ProjectReference.Directory)bin\$(Configuration)\netstandard2.0\*.dll"
+                Condition="'%(ProjectReference.PackagePath)' != ''"
+                Pack="true"
+                PackagePath="%(ProjectReference.PackagePath)"
+                Visible="false" />
+        </ItemGroup>
+    </Target>
+
+</Project>

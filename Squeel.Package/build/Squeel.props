@@ -1,0 +1,8 @@
+<Project>
+    <PropertyGroup>
+        <InterceptorsPreviewNamespaces>$(InterceptorsPreviewNamespaces);Squeel</InterceptorsPreviewNamespaces>
+    </PropertyGroup>
+    <ItemGroup>
+        <AdditionalFiles Include="squeel.json" />
+    </ItemGroup>
+</Project>

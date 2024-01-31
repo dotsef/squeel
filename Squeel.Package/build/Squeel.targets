@@ -1,0 +1,12 @@
+<Project>
+    <Target Name="SqueelResolveDb" AfterTargets="ResolveReferences">
+        <Exec Command="powershell -Command &quot;$result = (dotnet list package --include-transitive --format json | ConvertFrom-Json).projects.frameworks | ForEach-Object { $_.topLevelPackages + $_.transitivePackages } | Where-Object { $_.id -eq 'Npgsql' -or $_.id -eq 'Microsoft.Data.SqlClient' -or $_.id -eq 'MySql.Data' }; if ($result.Count -gt 1) { throw 'Multiple matching packages found' }; if ($result.Count -eq 1) { Write-Host $result.id }&quot;" ConsoleToMSBuild="true">
+            <Output TaskParameter="ConsoleOutput" PropertyName="ActiveDatabase" />
+        </Exec>
+        <ItemGroup Condition="'$(ActiveDatabase)' != ''">
+            <Analyzer Condition="'$(ActiveDatabase)' == 'Npgsql'" Include="$(MSBuildThisFileDirectory)../generators/postgres/Squeel.Generators.Postgres.dll" />
+            <Analyzer Condition="'$(ActiveDatabase)' == 'Microsoft.Data.SqlClient'" Include="$(MSBuildThisFileDirectory)../generators/sqlserver/Squeel.Generators.SqlServer.dll" />
+            <Analyzer Condition="'$(ActiveDatabase)' == 'MySql.Data'" Include="$(MSBuildThisFileDirectory)../generators/mysql/Squeel.Generators.MySql.dll" />
+        </ItemGroup>
+    </Target>
+</Project>

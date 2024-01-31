@@ -2,7 +2,7 @@
   <PropertyGroup>
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
     <CentralPackageTransitivePinningEnabled>true</CentralPackageTransitivePinningEnabled>
-    <EnablePackageVersionOverride>false</EnablePackageVersionOverride>
+    <EnablePackageVersionOverride>true</EnablePackageVersionOverride>
   </PropertyGroup>
   <ItemGroup>
     <GlobalPackageReference Include="Nerdbank.GitVersioning" Version="3.7.48-alpha" />
@@ -18,9 +18,11 @@
     <PackageVersion Include="Microsoft.CodeAnalysis.Analyzers" Version="3.11.0-beta1.23525.2" />
     <PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="4.8.0" />
     <PackageVersion Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.8.0" />
+    <PackageVersion Include="Microsoft.Data.SqlClient" Version="5.2.0-preview5.24024.3" />
     <PackageVersion Include="Microsoft.Extensions.DependencyModel" Version="8.0.0" />
     <PackageVersion Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.0" />
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.9.0-release-23619-01" />
+    <PackageVersion Include="MySql.Data" Version="8.3.0" />
     <PackageVersion Include="Npgsql" Version="8.0.1" />
     <PackageVersion Include="PolySharp" Version="1.14.1" />
     <PackageVersion Include="System.Buffers" Version="4.5.1" />

@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Roslyn": {
+      "commandName": "DebugRoslynComponent",
+      "targetProject": "..\\Squeel.Examples.Postgres\\Squeel.Examples.Postgres.csproj"
+    }
+  }
+}

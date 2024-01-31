@@ -1,0 +1,76 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <IsRoslynComponent>true</IsRoslynComponent>
+        <DevelopmentDependency>true</DevelopmentDependency>
+        <IncludeBuildOutput>false</IncludeBuildOutput>
+        <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
+        <IsPackable>false</IsPackable>
+        <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+        <NoWarn>
+            $(NoWarn);
+            CA2100; <!-- All queries are ran against the developer's own database -->
+        </NoWarn>
+    </PropertyGroup>
+
+    <ItemGroup Label="Source Generators">
+        <PackageReference Include="Microsoft.CodeAnalysis.CSharp" PrivateAssets="all" />
+        <PackageReference Include="Microsoft.CodeAnalysis.Analyzers">
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
+        <PackageReference Include="PolySharp">
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
+    </ItemGroup>
+
+    <ItemGroup Label="Manual Dependencies">
+        <PackageReference Include="Humanizer.Core" GeneratePathProperty="true" PrivateAssets="all" />
+        <PackageReference Include="Npgsql" GeneratePathProperty="true" PrivateAssets="all" />
+        <PackageReference Include="Microsoft.Bcl.HashCode" GeneratePathProperty="true" PrivateAssets="all" />
+        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" GeneratePathProperty="true" PrivateAssets="all" />
+        <PackageReference Include="System.Buffers" GeneratePathProperty="true" PrivateAssets="all" />
+        <PackageReference Include="System.Memory" GeneratePathProperty="true" PrivateAssets="all" />
+        <PackageReference Include="System.Numerics.Vectors" GeneratePathProperty="true" PrivateAssets="all" />
+        <PackageReference Include="System.Collections.Immutable" GeneratePathProperty="true" PrivateAssets="all" />
+        <PackageReference Include="System.Diagnostics.DiagnosticSource" GeneratePathProperty="true" PrivateAssets="all" />
+        <PackageReference Include="System.Runtime.CompilerServices.Unsafe" GeneratePathProperty="true" PrivateAssets="all" />
+        <PackageReference Include="System.Text.Json" GeneratePathProperty="true" PrivateAssets="all" />
+        <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" GeneratePathProperty="true" PrivateAssets="all" />
+        <PackageReference Include="System.Text.Encodings.Web" GeneratePathProperty="true" PrivateAssets="all" />
+        <PackageReference Include="System.Threading.Tasks.Extensions" GeneratePathProperty="true" PrivateAssets="all" />
+        <PackageReference Include="System.Threading.Channels" GeneratePathProperty="true" PrivateAssets="all" />
+    </ItemGroup>
+
+    <PropertyGroup>
+        <GetTargetPathDependsOn>$(GetTargetPathDependsOn);GetDependencyTargetPaths</GetTargetPathDependsOn>
+    </PropertyGroup>
+
+    <Target Name="GetDependencyTargetPaths">
+        <ItemGroup>
+            <TargetPathWithTargetPlatformMoniker IncludeRuntimeDependency="false" Include="$(MSBuildProjectDirectory)\..\..\Squeel.Core\bin\$(Configuration)\netstandard2.0\Squeel.Core.dll" />
+            <TargetPathWithTargetPlatformMoniker IncludeRuntimeDependency="false" Include="$(PkgHumanizer_Core)\lib\netstandard2.0\*.dll" />
+            <TargetPathWithTargetPlatformMoniker IncludeRuntimeDependency="false" Include="$(PkgNpgsql)\lib\netstandard2.0\*.dll" />
+            <TargetPathWithTargetPlatformMoniker IncludeRuntimeDependency="false" Include="$(PkgMicrosoft_Bcl_HashCode)\lib\netstandard2.0\*.dll" />
+            <TargetPathWithTargetPlatformMoniker IncludeRuntimeDependency="false" Include="$(PkgSystem_Buffers)\lib\netstandard2.0\*.dll" />
+            <TargetPathWithTargetPlatformMoniker IncludeRuntimeDependency="false" Include="$(PkgSystem_Memory)\lib\netstandard2.0\*.dll" />
+            <TargetPathWithTargetPlatformMoniker IncludeRuntimeDependency="false" Include="$(PkgSystem_Numerics_Vectors)\lib\netstandard2.0\*.dll" />
+            <TargetPathWithTargetPlatformMoniker IncludeRuntimeDependency="false" Include="$(PkgSystem_Collections_Immutable)\lib\netstandard2.0\*.dll" />
+            <TargetPathWithTargetPlatformMoniker IncludeRuntimeDependency="false" Include="$(PkgSystem_Diagnostics_DiagnosticSource)\lib\netstandard2.0\*.dll" />
+            <TargetPathWithTargetPlatformMoniker IncludeRuntimeDependency="false" Include="$(PkgSystem_Runtime_CompilerServices_Unsafe)\lib\netstandard2.0\*.dll" />
+            <TargetPathWithTargetPlatformMoniker IncludeRuntimeDependency="false" Include="$(PkgSystem_Text_Json)\lib\netstandard2.0\*.dll" />
+            <TargetPathWithTargetPlatformMoniker IncludeRuntimeDependency="false" Include="$(PkgMicrosoft_Bcl_AsyncInterfaces)\lib\netstandard2.0\*.dll" />
+            <TargetPathWithTargetPlatformMoniker IncludeRuntimeDependency="false" Include="$(PkgMicrosoft_Extensions_Logging_Abstractions)\lib\netstandard2.0\*.dll" />
+            <TargetPathWithTargetPlatformMoniker IncludeRuntimeDependency="false" Include="$(PkgSystem_Text_Encodings_Web)\lib\netstandard2.0\*.dll" />
+            <TargetPathWithTargetPlatformMoniker IncludeRuntimeDependency="false" Include="$(PkgSystem_Threading_Tasks_Extensions)\lib\netstandard2.0\*.dll" />
+            <TargetPathWithTargetPlatformMoniker IncludeRuntimeDependency="false" Include="$(PkgSystem_Threading_Channels)\lib\netstandard2.0\*.dll" />
+        </ItemGroup>
+    </Target>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\Squeel.Core\Squeel.Core.csproj" />
+    </ItemGroup>
+
+</Project>

@@ -39,11 +39,11 @@ jobs:
         name: "⚙️ compiling"
         shell: bash
 
-      - run: dotnet pack -c Release --no-restore --no-build -p:TreatWarningsAsErrors=true
+      - run: dotnet pack --no-restore --no-build -p:TreatWarningsAsErrors=true
         name: "📦 packaging"
         shell: bash
   
-      - run: dotnet nuget push src/squeel/**/*.nupkg -s https://api.nuget.org/v3/index.json -k ${{ secrets.NUGET_API_KEY }}
+      - run: dotnet nuget push Squeel.Package/bin/Release/**/*.nupkg -s https://api.nuget.org/v3/index.json -k ${{ secrets.NUGET_API_KEY }}
         name: "🚀 publishing"
         shell: bash
 
