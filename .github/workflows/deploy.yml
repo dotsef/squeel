@@ -31,6 +31,14 @@ jobs:
           cache: true
           cache-dependency-path: '**/packages.lock.json'
 
+      - run: docker run -itd --name postgres -e POSTGRES_USER=squeel -e POSTGRES_PASSWORD=squeel -p 5432:5432 postgres:16
+        name: "🐘 postgresql"
+        shell: bash
+
+      - run: echo '{"connectionstring":"Host=localhost;Port=5432;Username=squeel;Password=squeel;Database=squeel"}' > Postgres/Squeel.Examples.Postgres/squeel.json
+        name: "connection string"
+        shell: bash
+
       - run: dotnet restore --locked-mode -p:DisableImplicitNuGetFallbackFolder=true
         name: "📦 restoring"
         shell: bash
