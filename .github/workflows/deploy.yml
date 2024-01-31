@@ -39,7 +39,7 @@ jobs:
         name: "connection string"
         shell: bash
 
-      - run: docker cp .github/workflows/postgresl.sql postgres:/postgres.sql
+      - run: docker cp .github/workflows/postgres.sql postgres:/postgres.sql
         name: "copy"
         shell: bash
 
