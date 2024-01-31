@@ -36,9 +36,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Squeel.Postgres.Examples", 
 		{39D871C3-64CC-454F-8844-4EB5669256F9} = {39D871C3-64CC-454F-8844-4EB5669256F9}
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Squeel.Generators.SqlServer", "SQLServer\Squeel.Generators.SqlServer\Squeel.Generators.SqlServer.csproj", "{A394769A-807E-4006-AD0D-B779CDEC3838}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Squeel.Generators.SqlServer", "SqlServer\Squeel.Generators.SqlServer\Squeel.Generators.SqlServer.csproj", "{A394769A-807E-4006-AD0D-B779CDEC3838}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Squeel.Generators.MySql", "MySQL\Squeel.Generators.MySql\Squeel.Generators.MySql.csproj", "{80C6B410-98BD-4B1B-9884-F0063F456317}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Squeel.Generators.MySql", "MySql\Squeel.Generators.MySql\Squeel.Generators.MySql.csproj", "{80C6B410-98BD-4B1B-9884-F0063F456317}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Postgres", "Postgres", "{EFA86904-7632-44ED-BA8E-70F0AA5A3065}"
 EndProject
